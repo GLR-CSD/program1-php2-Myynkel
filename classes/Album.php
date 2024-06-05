@@ -66,6 +66,18 @@ class Album
         return $albums;
     }
 
+    public function save(PDO $db): void
+    {
+        // Voorbereiden van de query
+        $stmt = $db->prepare("INSERT INTO Album (naam, artiesten, releaseDatum, afbeelding, prijs) VALUES (:naam, :artiesten, :releaseDatum, :afbeelding, :prijs)");
+        $stmt->bindParam(':naam', $this->naam);
+        $stmt->bindParam(':artiesten', $this->artiesten);
+        $stmt->bindParam(':releaseDatum', $this->releaseDatum);
+        $stmt->bindParam(':afbeelding', $this->afbeelding);
+        $stmt->bindParam(':prijs', $this->prijs);
+        $stmt->execute();
+    }
+
     /**
      * @return int|null
      */
