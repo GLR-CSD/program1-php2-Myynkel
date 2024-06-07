@@ -23,7 +23,7 @@
             <td><?= $album->getNaam() ?></td>
             <td><?= $album->getArtiesten() ?></td>
             <td><?= $album->getReleaseDatum() ?></td>
-            <td><img src="public/albumcovers/<?= $album->getAfbeelding()?>"></td>
+            <td><img src="<?= $album->getAfbeelding()?>"></td>
             <td><?= $album->getPrijs() ?></td>
         </tr>
     <?php endforeach; ?>
@@ -40,7 +40,7 @@
             </ul>
         </div>
     <?php endif; ?>
-    <form action="toevoegen_album.php" method="post">
+    <form action="toevoegen_album.php" method="post" enctype="multipart/form-data">
         <label for="naam">Naam:</label>
         <input type="text" id="naam" name="naam" value="<?= $formValues['naam'] ?? '' ?>" required>
         <?php if (isset($errors['naam'])): ?>
